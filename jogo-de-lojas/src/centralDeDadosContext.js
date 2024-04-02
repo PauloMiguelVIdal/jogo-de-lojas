@@ -11,11 +11,17 @@ const CentraldeDadosProvider = ({ children }) => {
   const [dadosPreçosConstruçãoLojaM, setDadosPreçoConstruçãoLojasM] = useState(100000);
   const [dadosPreçosConstruçãoLojaG, setDadosPreçoConstruçãoLojasG] = useState(240000);
   const [dadosLojasP, setDadosLojasP] = useState(0);
-  const [dadosFaturamentoLojasP, setDadosFaturamentoLojasP] = useState(0);
   const [dadosLojasM, setDadosLojasM] = useState(0);
-  const [dadosFaturamentoLojasM, setDadosFaturamentoLojasM] = useState(0);
   const [dadosLojasG, setDadosLojasG] = useState(0);
+  const [dadosFaturamentoLojasP, setDadosFaturamentoLojasP] = useState(0);
+  const [dadosFaturamentoMínimoLojasP, setDadosFaturamentoMínimoLojasP] = useState(800);
+  const [dadosFaturamentoMáximoLojasP, setDadosFaturamentoMáximoLojasP] = useState(1400);
+  const [dadosFaturamentoLojasM, setDadosFaturamentoLojasM] = useState(0);
+  const [dadosFaturamentoMínimoLojasM, setDadosFaturamentoMínimoLojasM] = useState(2000);
+  const [dadosFaturamentoMáximoLojasM, setDadosFaturamentoMáximoLojasM] = useState(4500);
   const [dadosFaturamentoLojasG, setDadosFaturamentoLojasG] = useState(0);
+  const [dadosFaturamentoMínimoLojasG, setDadosFaturamentoMínimoLojasG] = useState(5000);
+  const [dadosFaturamentoMáximoLojasG, setDadosFaturamentoMáximoLojasG] = useState(12000);
   const [dadosDespesasLojasP, setDadosDespesasLojasP] = useState(0);
   const [dadosDespesasLojasM, setDadosDespesasLojasM] = useState(0);
   const [dadosDespesasLojasG, setDadosDespesasLojasG] = useState(0);
@@ -52,9 +58,9 @@ const CentraldeDadosProvider = ({ children }) => {
   const AtualizarDadosPreçoConstruçãoLojasG = novoPreçoConstruçãoLojasG =>{
     setDadosPreçoConstruçãoLojasG(novoPreçoConstruçãoLojasG)
   }
-
-
-
+  
+  
+  
   const AtualizarDadosTerrenos = novoTerreno =>{
     setDadosTerrenos(novoTerreno)
   }
@@ -72,6 +78,26 @@ const CentraldeDadosProvider = ({ children }) => {
   }
   const AtualizarDadosFaturamentoLojasP = novoFaturamentoLojaP =>{
     setDadosFaturamentoLojasP(novoFaturamentoLojaP)
+  }
+  const AtualizarDadosFaturamentoMínimoLojasP = novoFaturamentoMínimoLojasP =>{
+    setDadosFaturamentoMínimoLojasP(novoFaturamentoMínimoLojasP)
+  }
+  const AtualizarDadosFaturamentoMáximoLojasP = novoFaturamentoMáximoLojasP =>{
+    setDadosFaturamentoMáximoLojasP(novoFaturamentoMáximoLojasP)
+  }
+
+  const AtualizarDadosFaturamentoMínimoLojasM = novoFaturamentoMínimoLojasM =>{
+    setDadosFaturamentoMínimoLojasM(novoFaturamentoMínimoLojasM)
+  }
+  const AtualizarDadosFaturamentoMáximoLojasM = novoFaturamentoMáximoLojasM =>{
+    setDadosFaturamentoMáximoLojasP(novoFaturamentoMáximoLojasM)
+  }
+
+  const AtualizarDadosFaturamentoMínimoLojasG = novoFaturamentoMínimoLojasG =>{
+    setDadosFaturamentoMínimoLojasG(novoFaturamentoMínimoLojasG)
+  }
+  const AtualizarDadosFaturamentoMáximoLojasG = novoFaturamentoMáximoLojasG =>{
+    setDadosFaturamentoMáximoLojasG(novoFaturamentoMáximoLojasG)
   }
 
   const AtualizarDadosLojasM = novaLojaM =>{
@@ -99,6 +125,7 @@ const CentraldeDadosProvider = ({ children }) => {
   const AtualizarDadosCustoMáximoFuncionário = novoCustoMáximoFuncionário =>{
     setDadosCustoMáximoFuncionário(novoCustoMáximoFuncionário)
   }
+
   const AtualizarDadosCustoFuncionário = novoCustoFuncionário =>{
     setDadosCustoFuncionário(novoCustoFuncionário)
   }
@@ -121,16 +148,10 @@ const CentraldeDadosProvider = ({ children }) => {
       AtualizarDadosDespesasLojasM,
       dadosDespesasLojasG,
       AtualizarDadosDespesasLojasG,
-      dadosFaturamentoLojasP,
-      AtualizarDadosFaturamentoLojasP,
       dadosLojasM,
       AtualizarDadosLojasM,
-      dadosFaturamentoLojasM,
-      AtualizarDadosFaturamentoLojasM,
       dadosLojasG,
       AtualizarDadosLojasG,
-      dadosFaturamentoLojasG,
-      AtualizarDadosFaturamentoLojasG,
       dadosDiaPagarDespesas,
       AtualizarDadosDiaPagarDespesas,
       dadosDespesasPagas,
@@ -142,7 +163,17 @@ const CentraldeDadosProvider = ({ children }) => {
       dadosPreçosConstruçãoLojaG,AtualizarDadosPreçoConstruçãoLojasG,
       dadosCustoMáximoFuncionário,AtualizarDadosCustoMáximoFuncionário,
       dadosCustoMínimoFuncionário,AtualizarDadosCustoMínimoFuncionário,
-      dadosCustoFuncionário,AtualizarDadosCustoFuncionário
+      dadosCustoFuncionário,AtualizarDadosCustoFuncionário,
+      dadosFaturamentoMínimoLojasP,AtualizarDadosFaturamentoMínimoLojasP,
+      dadosFaturamentoMáximoLojasP,AtualizarDadosFaturamentoMáximoLojasP,
+      dadosFaturamentoLojasP,AtualizarDadosFaturamentoLojasP,
+      dadosFaturamentoMínimoLojasM,AtualizarDadosFaturamentoMínimoLojasM,
+      dadosFaturamentoMáximoLojasM,AtualizarDadosFaturamentoMáximoLojasM,
+      dadosFaturamentoLojasM,AtualizarDadosFaturamentoLojasM,
+      dadosFaturamentoMínimoLojasG,AtualizarDadosFaturamentoMínimoLojasG,
+      dadosFaturamentoMáximoLojasG,AtualizarDadosFaturamentoMáximoLojasG,
+      dadosFaturamentoLojasG,AtualizarDadosFaturamentoLojasG,
+      
     }}>
       {children}
     </CentraldeDadosContext.Provider>

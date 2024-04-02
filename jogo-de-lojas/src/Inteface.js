@@ -1,126 +1,143 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import { CentraldeDadosContext } from "./centralDeDadosContext";
 
 
-function Interface(){
+function Interface() {
     const {
-        dadosSaldo,AtualizarDadosSaldo,
-        dadosDia,AtualizarDadosDia,
-        dadosDiaDePagarDespesas,AtualizarDadosDiaPagarDespesas,
-        dadosDespesasPagas,AtualizarDespesasPagas,
-        dadosTerrenos,AtualizarDadosTerrenos,
-        dadosPreçosTerrenos,AtualizarDadosPreçosTerrenos,
-        dadosLojasP,AtualizarDadosLojasP,
-        dadosFaturamentoLojasP,AtualizarDadosDespesasLojasP,AtualizarDadosFaturamentoLojasP,dadosDespesasLojasP,
-        dadosLojasM,AtualizarDadosLojasM,AtualizarDadosDespesasLojasM,dadosDespesasLojasM,
-        dadosFaturamentoLojasM,AtualizarDadosFaturamentoLojasM,
-        dadosLojasG,AtualizarDadosLojasG,AtualizarDadosDespesasLojasG,dadosDespesasLojasG,
-        dadosFaturamentoLojasG,AtualizarDadosFaturamentoLojasG,
-        dadosPreçosConstruçãoLojaP,AtualizarDadosPreçoConstruçãoLojasP,
-        dadosPreçosConstruçãoLojaM,AtualizarDadosPreçoConstruçãoLojasM,
-        dadosPreçosConstruçãoLojaG,AtualizarDadosPreçoConstruçãoLojasG,
-        dadosCustoMáximoFuncionário,AtualizarDadosCustoMáximoFuncionário,
-        dadosCustoMínimoFuncionário,AtualizarDadosCustoMínimoFuncionário,
-        dadosCustoFuncionário,AtualizarDadosCustoFuncionário
+        dadosSaldo, AtualizarDadosSaldo,
+        dadosDia, AtualizarDadosDia,
+        dadosDiaDePagarDespesas, AtualizarDadosDiaPagarDespesas,
+        dadosDespesasPagas, AtualizarDespesasPagas,
+        dadosTerrenos, AtualizarDadosTerrenos,
+        dadosPreçosTerrenos, AtualizarDadosPreçosTerrenos,
+        dadosLojasP, AtualizarDadosLojasP,
+        AtualizarDadosDespesasLojasP, dadosDespesasLojasP,
+        dadosLojasM, AtualizarDadosLojasM, AtualizarDadosDespesasLojasM, dadosDespesasLojasM,
+        dadosLojasG, AtualizarDadosLojasG, AtualizarDadosDespesasLojasG, dadosDespesasLojasG,
+        dadosPreçosConstruçãoLojaP, AtualizarDadosPreçoConstruçãoLojasP,
+        dadosPreçosConstruçãoLojaM, AtualizarDadosPreçoConstruçãoLojasM,
+        dadosPreçosConstruçãoLojaG, AtualizarDadosPreçoConstruçãoLojasG,
+        dadosCustoMáximoFuncionário, AtualizarDadosCustoMáximoFuncionário,
+        dadosCustoMínimoFuncionário, AtualizarDadosCustoMínimoFuncionário,
+        dadosCustoFuncionário, AtualizarDadosCustoFuncionário,
+        dadosFaturamentoMínimoLojasP, AtualizarDadosFaturamentoMínimoLojasP,
+        dadosFaturamentoMáximoLojasP, AtualizarDadosFaturamentoMáximoLojasP,
+        dadosFaturamentoLojasP, AtualizarDadosFaturamentoLojasP,
+        dadosFaturamentoUnitárioLojasP,AtualizarDadosFaturamentoUnitárioLojasP,
+        dadosFaturamentoTotalLojasP,AtualizarDadosFaturamentoTotalLojasP,
+        dadosFaturamentoMínimoLojasM, AtualizarDadosFaturamentoMínimoLojasM,
+        dadosFaturamentoMáximoLojasM, AtualizarDadosFaturamentoMáximoLojasM,
+        dadosFaturamentoLojasM, AtualizarDadosFaturamentoLojasM,
+        dadosFaturamentoMínimoLojasG, AtualizarDadosFaturamentoMínimoLojasG,
+        dadosFaturamentoMáximoLojasG, AtualizarDadosFaturamentoMáximoLojasG,
+        dadosFaturamentoLojasG, AtualizarDadosFaturamentoLojasG,
+
     } = useContext(CentraldeDadosContext)
 
-
-    const ProximoDia = ()=>{
-        if(dadosDia % 30 ===0){
-            AtualizarDespesasPagas(false)
-        if(dadosDespesasPagas === false){
-        return alert("despesas não pagas, pague as despesas para avançar")
-        }
+    let novoCustoFuncionário
+    const custoFuncionário = () => {
+        novoCustoFuncionário = Math.floor(Math.random() * (dadosCustoMáximoFuncionário - dadosCustoMínimoFuncionário + 1)) + dadosCustoMínimoFuncionário
+        AtualizarDadosCustoFuncionário(novoCustoFuncionário)
+    }
     
-   }    
+    let novoFaturamentoUnitárioLojaP
+    const gerarFaturamentoLojasP = () => {
+        novoFaturamentoUnitárioLojaP = Math.floor(Math.random() * (dadosFaturamentoMáximoLojasP - dadosFaturamentoMínimoLojasP + 1)) + dadosFaturamentoMínimoLojasP
+        // AtualizarDadosFaturamentoUnitárioLojasP(novoFaturamentoUnitárioLojaP)
+        alert("está sendo chamado")
+        alert(dadosFaturamentoUnitárioLojasP)
+        alert(novoFaturamentoUnitárioLojaP)
+    }
 
-     
-        
+    const ProximoDia = () => {
+        if (dadosDia % 30 === 0) {
+            AtualizarDespesasPagas(false)
+            if (dadosDespesasPagas === false) {
+                return alert("despesas não pagas, pague as despesas para avançar")
+            }
+
+        }
+
+
+
         AtualizarDadosDia(dadosDia + 1)
-        AtualizarDadosFaturamentoLojasP(dadosLojasP * 1000)
+        gerarFaturamentoLojasP()
+        AtualizarDadosFaturamentoUnitárioLojasP(novoFaturamentoUnitárioLojaP)
+        alert(`dados fauramento${dadosFaturamentoUnitárioLojasP}`)
+        AtualizarDadosFaturamentoTotalLojasP(dadosLojasP * dadosFaturamentoUnitárioLojasP)
+        alert(dadosFaturamentoTotalLojasP)
         AtualizarDadosDespesasLojasP(dadosLojasP * 250)
         AtualizarDadosDespesasLojasM(dadosLojasM * 400)
         AtualizarDadosDespesasLojasG(dadosLojasG * 750)
         AtualizarDadosFaturamentoLojasM(dadosLojasM * 3000)
         AtualizarDadosFaturamentoLojasG(dadosLojasG * 7000)
-        AtualizarDadosSaldo(dadosSaldo + dadosFaturamentoLojasP + dadosFaturamentoLojasM + dadosFaturamentoLojasG) 
+        AtualizarDadosSaldo(dadosSaldo + dadosFaturamentoTotalLojasP + dadosFaturamentoLojasM + dadosFaturamentoLojasG)
     }
 
-const mudançasDePreços = ()=>{
-    AtualizarDadosPreçosTerrenos(20000)
-}
-
-const CustoFunc = (dadosCustoMáximoFuncionário,dadosCustoMínimoFuncionário)=>{
-    
-}
+    const mudançasDePreços = () => {
+        AtualizarDadosPreçosTerrenos(20000)
+    }
 
 
-
-    const ComprarTerreno = ()=>{
-        if(dadosSaldo < dadosPreçosTerrenos){
+    const ComprarTerreno = () => {
+        if (dadosSaldo < dadosPreçosTerrenos) {
             alert("você não tem dinheiro suficiente")
-        } else{
+        } else {
             AtualizarDadosTerrenos(dadosTerrenos + 1)
             AtualizarDadosSaldo(dadosSaldo - dadosPreçosTerrenos)
         }
     }
-    const ComprarLojaP = ()=>{
-        if(dadosTerrenos < 1){
+    const ComprarLojaP = () => {
+        if (dadosTerrenos < 1) {
             return alert("você não tem terreno suficiente")
         }
-        if(dadosSaldo < dadosPreçosConstruçãoLojaP){
+        if (dadosSaldo < dadosPreçosConstruçãoLojaP) {
             alert("você não tem dinheiro suficiente para construir")
-        } else{
+        } else {
             AtualizarDadosLojasP(dadosLojasP + 1)
             AtualizarDadosTerrenos(dadosTerrenos - 1)
             AtualizarDadosSaldo(dadosSaldo - dadosPreçosConstruçãoLojaP)
         }
     }
 
-    const ComprarLojaM = ()=>{
-        if(dadosTerrenos < 2){
+    const ComprarLojaM = () => {
+        if (dadosTerrenos < 2) {
             return alert("você não tem terrenos suficiente")
         }
-        if(dadosSaldo < dadosPreçosConstruçãoLojaM){
+        if (dadosSaldo < dadosPreçosConstruçãoLojaM) {
             alert("você não tem dinheiro suficiente para construir")
-        } else{
+        } else {
             AtualizarDadosLojasM(dadosLojasM + 1)
             AtualizarDadosTerrenos(dadosTerrenos - 2)
             AtualizarDadosSaldo(dadosSaldo - dadosPreçosConstruçãoLojaM)
         }
     }
 
-    const ComprarLojaG = ()=>{
-        if(dadosTerrenos < 3){
+    const ComprarLojaG = () => {
+        if (dadosTerrenos < 3) {
             return alert("você não tem terrenos suficiente")
         }
-        if(dadosSaldo < dadosPreçosConstruçãoLojaG){
+        if (dadosSaldo < dadosPreçosConstruçãoLojaG) {
             alert("você não tem dinheiro suficiente para construir")
-        } else{
+        } else {
             AtualizarDadosLojasG(dadosLojasG + 1)
             AtualizarDadosTerrenos(dadosTerrenos - 3)
             AtualizarDadosSaldo(dadosSaldo - dadosPreçosConstruçãoLojaG)
         }
     }
 
-    const PagarDespesas = ()=>{
-        if(dadosDespesasPagas == true){
-           return alert("despesas desse mês já forma pagas")
+    const PagarDespesas = () => {
+        if (dadosDespesasPagas == true) {
+            return alert("despesas desse mês já forma pagas")
         }
-        else{
-            AtualizarDadosSaldo( dadosSaldo-dadosDespesasLojasP-dadosDespesasLojasM-dadosDespesasLojasG)
+        else {
+            AtualizarDadosSaldo(dadosSaldo - dadosDespesasLojasP - dadosDespesasLojasM - dadosDespesasLojasG)
             AtualizarDespesasPagas(true)
             alert("despesas pagas")
-            
+
         }
     }
 
- let custoFunc
-
-  const teste = ()=>{
-     custoFunc = Math.floor(Math.random() * (dadosCustoMáximoFuncionário - dadosCustoMínimoFuncionário + 1)) + dadosCustoMínimoFuncionário
-     alert(custoFunc)
-    }
 
 
 
@@ -164,6 +181,15 @@ const CustoFunc = (dadosCustoMáximoFuncionário,dadosCustoMínimoFuncionário)=
                         <div className="flex items-center justify-center">
                             <h1>lojas G:{dadosLojasG}</h1>
                         </div>
+                        <div className="flex items-center justify-center">
+                            <h1>custoFuncionário:{dadosCustoFuncionário}</h1>
+                        </div>
+                        <div className="flex items-center justify-center">
+                            <h1>faturamentoUnitárioLojasP:{dadosFaturamentoUnitárioLojasP}</h1>
+                        </div>
+                        <div className="flex items-center justify-center">
+                            <h1>faturamentoTotalLojasP:{dadosFaturamentoTotalLojasP}</h1>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -180,7 +206,7 @@ const CustoFunc = (dadosCustoMáximoFuncionário,dadosCustoMínimoFuncionário)=
                     <h1 className="fonteLight text-roxo text-[20px]">Despesas do mês Atual:</h1>
                     <h1 className="fonteBold text-roxo text-[20px]">{dadosFaturamentoLojasP + dadosFaturamentoLojasM + dadosFaturamentoLojasG}</h1>
                 </div>
-               
+
             </div>
 
 
@@ -188,7 +214,7 @@ const CustoFunc = (dadosCustoMáximoFuncionário,dadosCustoMínimoFuncionário)=
                 <div className="flex justify-around">
 
                     <button onClick={ProximoDia}>
-                    proximo dia</button>
+                        proximo dia</button>
                     <button onClick={PagarDespesas}> pagar despesas</button>
                 </div>
                 <div className="flex justify-around">
@@ -198,7 +224,8 @@ const CustoFunc = (dadosCustoMáximoFuncionário,dadosCustoMínimoFuncionário)=
                     <button onClick={ComprarLojaM}>Comprar Loja Média</button>
                     <button onClick={ComprarLojaG}>Comprar Loja Grande</button>
                     <button onClick={mudançasDePreços}>mudançasDePreços</button>
-                    <button onClick={teste}>teste</button>
+                    <button onClick={custoFuncionário}>Alteração custo funcionário</button>
+                    <button onClick={gerarFaturamentoLojasP}>Alteração Faturamento lojas p</button>
                 </div>
             </div>
         </div>
