@@ -6,64 +6,63 @@ function Interface() {
     const {
         dadosSaldo, AtualizarDadosSaldo,
         dadosDia, AtualizarDadosDia,
+
+        //seção despesas
         dadosDiaDePagarDespesas, AtualizarDadosDiaPagarDespesas,
         dadosDespesasPagas, AtualizarDespesasPagas,
+        AtualizarDadosDespesasLojasP, dadosDespesasLojasP,
+
+
+        //seção terrenos
         dadosTerrenos, AtualizarDadosTerrenos,
         dadosPreçosTerrenos, AtualizarDadosPreçosTerrenos,
+
+
+        // seçãolojas p
         dadosLojasP, AtualizarDadosLojasP,
-        AtualizarDadosDespesasLojasP, dadosDespesasLojasP,
-        dadosLojasM, AtualizarDadosLojasM, AtualizarDadosDespesasLojasM, dadosDespesasLojasM,
-        dadosLojasG, AtualizarDadosLojasG, AtualizarDadosDespesasLojasG, dadosDespesasLojasG,
         dadosPreçosConstruçãoLojaP, AtualizarDadosPreçoConstruçãoLojasP,
-        dadosPreçosConstruçãoLojaM, AtualizarDadosPreçoConstruçãoLojasM,
-        dadosPreçosConstruçãoLojaG, AtualizarDadosPreçoConstruçãoLojasG,
-        dadosCustoMáximoFuncionário, AtualizarDadosCustoMáximoFuncionário,
-        dadosCustoMínimoFuncionário, AtualizarDadosCustoMínimoFuncionário,
-        dadosCustoFuncionário, AtualizarDadosCustoFuncionário,
         dadosFaturamentoMínimoLojasP, AtualizarDadosFaturamentoMínimoLojasP,
         dadosFaturamentoMáximoLojasP, AtualizarDadosFaturamentoMáximoLojasP,
-        dadosFaturamentoLojasP, AtualizarDadosFaturamentoLojasP,
-        dadosFaturamentoUnitárioLojasP,AtualizarDadosFaturamentoUnitárioLojasP,
-        dadosFaturamentoTotalLojasP,AtualizarDadosFaturamentoTotalLojasP,
+        dadosFaturamentoUnitárioLojasP, AtualizarDadosFaturamentoUnitárioLojasP,
+        dadosFaturamentoTotalLojasP, AtualizarDadosFaturamentoTotalLojasP,
+
+
+
+
+
+        //seção lojas m
+        dadosLojasM, AtualizarDadosLojasM, AtualizarDadosDespesasLojasM, dadosDespesasLojasM,
+        dadosPreçosConstruçãoLojaM, AtualizarDadosPreçoConstruçãoLojasM,
+        dadosFaturamentoUnitárioLojasM, AtualizarDadosFaturamentoUnitárioLojasM,
+        dadosFaturamentoTotalLojasM, AtualizarDadosFaturamentoTotalLojasM,
         dadosFaturamentoMínimoLojasM, AtualizarDadosFaturamentoMínimoLojasM,
         dadosFaturamentoMáximoLojasM, AtualizarDadosFaturamentoMáximoLojasM,
-        dadosFaturamentoLojasM, AtualizarDadosFaturamentoLojasM,
+
+
+
+
+        //seção lojas g
+        dadosLojasG, AtualizarDadosLojasG, AtualizarDadosDespesasLojasG, dadosDespesasLojasG,
+        dadosPreçosConstruçãoLojaG, AtualizarDadosPreçoConstruçãoLojasG,
         dadosFaturamentoMínimoLojasG, AtualizarDadosFaturamentoMínimoLojasG,
         dadosFaturamentoMáximoLojasG, AtualizarDadosFaturamentoMáximoLojasG,
-        dadosFaturamentoLojasG, AtualizarDadosFaturamentoLojasG,
-        dadosFaturamentoUnitárioLojasM,AtualizarDadosFaturamentoUnitárioLojasM,
-        dadosFaturamentoTotalLojasM,AtualizarDadosFaturamentoTotalLojasM,
-        dadosFaturamentoUnitárioLojasG,AtualizarDadosFaturamentoUnitárioLojasG,
-        dadosFaturamentoTotalLojasG,AtualizarDadosFaturamentoTotalLojasG,
+        dadosFaturamentoUnitárioLojasG, AtualizarDadosFaturamentoUnitárioLojasG,
+        dadosFaturamentoTotalLojasG, AtualizarDadosFaturamentoTotalLojasG,
+
+
+
+
+
+        //seção funcionários
+        dadosCustoFuncionário, AtualizarDadosCustoFuncionário,
+        dadosCustoMáximoFuncionário, AtualizarDadosCustoMáximoFuncionário,
+        dadosCustoMínimoFuncionário, AtualizarDadosCustoMínimoFuncionário,
+
+
 
     } = useContext(CentraldeDadosContext)
 
-    let novoCustoFuncionário
-    const custoFuncionário = () => {
-        novoCustoFuncionário = Math.floor(Math.random() * (dadosCustoMáximoFuncionário - dadosCustoMínimoFuncionário + 1)) + dadosCustoMínimoFuncionário
-        AtualizarDadosCustoFuncionário(novoCustoFuncionário)
-    }
-    
-    let novoFatuUnitárioLojaP
-    const gerarFaturamentoLojasP = () => {
-        novoFatuUnitárioLojaP = Math.floor(Math.random() * (dadosFaturamentoMáximoLojasP - dadosFaturamentoMínimoLojasP + 1)) + dadosFaturamentoMínimoLojasP
-        AtualizarDadosFaturamentoUnitárioLojasP(novoFatuUnitárioLojaP)
-        // alert(`novo faturamento unitário: ${dadosFaturamentoUnitárioLojasP}`)
-
-    }
-    let novoFatuUnitárioLojaM
-    const gerarFaturamentoLojasM = () => {
-        novoFatuUnitárioLojaM = Math.floor(Math.random() * (dadosFaturamentoMáximoLojasM - dadosFaturamentoMínimoLojasM + 1)) + dadosFaturamentoMínimoLojasM
-        AtualizarDadosFaturamentoUnitárioLojasM(novoFatuUnitárioLojaM)
-        // alert(`novo faturamento unitário: ${dadosFaturamentoUnitárioLojasM}`)
-    }
-    let novoFatuUnitárioLojaG
-    const gerarFaturamentoLojasG = () => {
-        novoFatuUnitárioLojaG = Math.floor(Math.random() * (dadosFaturamentoMáximoLojasG - dadosFaturamentoMínimoLojasG + 1)) + dadosFaturamentoMínimoLojasG
-        AtualizarDadosFaturamentoUnitárioLojasG(novoFatuUnitárioLojaG)
-        // alert(`novo faturamento unitário: ${dadosFaturamentoUnitárioLojasG}`)
-    }
-
+    //seção próximo dia
     const ProximoDia = () => {
         if (dadosDia % 30 === 0) {
             AtualizarDespesasPagas(false)
@@ -72,38 +71,21 @@ function Interface() {
             }
 
         }
-
-
-
         AtualizarDadosDia(dadosDia + 1)
         gerarFaturamentoLojasP()
         gerarFaturamentoLojasM()
         gerarFaturamentoLojasG()
-        // AtualizarDadosFaturamentoUnitárioLojasP(novoFatuUnitárioLojaP)
-        AtualizarDadosFaturamentoTotalLojasP(dadosLojasP * dadosFaturamentoUnitárioLojasP)        
-        // AtualizarDadosFaturamentoUnitárioLojasM(novoFatuUnitárioLojaM)
-        AtualizarDadosFaturamentoTotalLojasM(dadosLojasM * dadosFaturamentoUnitárioLojasM)        
-        // AtualizarDadosFaturamentoUnitárioLojasG(novoFatuUnitárioLojaG)
-        AtualizarDadosFaturamentoTotalLojasG(dadosLojasG * dadosFaturamentoUnitárioLojasG)        
+        AtualizarDadosFaturamentoTotalLojasP(dadosLojasP * dadosFaturamentoUnitárioLojasP)
+        AtualizarDadosFaturamentoTotalLojasM(dadosLojasM * dadosFaturamentoUnitárioLojasM)
+        AtualizarDadosFaturamentoTotalLojasG(dadosLojasG * dadosFaturamentoUnitárioLojasG)
         AtualizarDadosDespesasLojasP(dadosLojasP * 250)
         AtualizarDadosDespesasLojasM(dadosLojasM * 400)
         AtualizarDadosDespesasLojasG(dadosLojasG * 750)
         AtualizarDadosSaldo(dadosSaldo + dadosFaturamentoTotalLojasP + dadosFaturamentoTotalLojasM + dadosFaturamentoTotalLojasG)
     }
 
-    const mudançasDePreços = () => {
-        AtualizarDadosPreçosTerrenos(20000)
-    }
-
-
-    const ComprarTerreno = () => {
-        if (dadosSaldo < dadosPreçosTerrenos) {
-            alert("você não tem dinheiro suficiente")
-        } else {
-            AtualizarDadosTerrenos(dadosTerrenos + 1)
-            AtualizarDadosSaldo(dadosSaldo - dadosPreçosTerrenos)
-        }
-    }
+    // lojas P
+    
     const ComprarLojaP = () => {
         if (dadosTerrenos < 1) {
             return alert("você não tem terreno suficiente")
@@ -117,6 +99,19 @@ function Interface() {
         }
     }
 
+
+    let novoFatuUnitárioLojaP
+    const gerarFaturamentoLojasP = () => {
+        novoFatuUnitárioLojaP = Math.floor(Math.random() * (dadosFaturamentoMáximoLojasP - dadosFaturamentoMínimoLojasP + 1)) + dadosFaturamentoMínimoLojasP
+        AtualizarDadosFaturamentoUnitárioLojasP(novoFatuUnitárioLojaP)
+        // alert(`novo faturamento unitário: ${dadosFaturamentoUnitárioLojasP}`)
+    }
+
+
+
+
+    
+    // lojas M
     const ComprarLojaM = () => {
         if (dadosTerrenos < 2) {
             return alert("você não tem terrenos suficiente")
@@ -129,6 +124,44 @@ function Interface() {
             AtualizarDadosSaldo(dadosSaldo - dadosPreçosConstruçãoLojaM)
         }
     }
+
+
+    let novoFatuUnitárioLojaM
+    const gerarFaturamentoLojasM = () => {
+        novoFatuUnitárioLojaM = Math.floor(Math.random() * (dadosFaturamentoMáximoLojasM - dadosFaturamentoMínimoLojasM + 1)) + dadosFaturamentoMínimoLojasM
+        AtualizarDadosFaturamentoUnitárioLojasM(novoFatuUnitárioLojaM)
+        // alert(`novo faturamento unitário: ${dadosFaturamentoUnitárioLojasM}`)
+    }
+
+    // lojas G
+    let novoFatuUnitárioLojaG
+    const gerarFaturamentoLojasG = () => {
+        novoFatuUnitárioLojaG = Math.floor(Math.random() * (dadosFaturamentoMáximoLojasG - dadosFaturamentoMínimoLojasG + 1)) + dadosFaturamentoMínimoLojasG
+        AtualizarDadosFaturamentoUnitárioLojasG(novoFatuUnitárioLojaG)
+        // alert(`novo faturamento unitário: ${dadosFaturamentoUnitárioLojasG}`)
+    }
+
+    //terreno
+    const ComprarTerreno = () => {
+        if (dadosSaldo < dadosPreçosTerrenos) {
+            alert("você não tem dinheiro suficiente")
+        } else {
+            AtualizarDadosTerrenos(dadosTerrenos + 1)
+            AtualizarDadosSaldo(dadosSaldo - dadosPreçosTerrenos)
+        }
+    }
+
+
+
+    //funcionário
+
+    let novoCustoFuncionário
+    const custoFuncionário = () => {
+        novoCustoFuncionário = Math.floor(Math.random() * (dadosCustoMáximoFuncionário - dadosCustoMínimoFuncionário + 1)) + dadosCustoMínimoFuncionário
+        AtualizarDadosCustoFuncionário(novoCustoFuncionário)
+    }
+
+
 
     const ComprarLojaG = () => {
         if (dadosTerrenos < 3) {
@@ -143,6 +176,9 @@ function Interface() {
         }
     }
 
+    const mudançasDePreços = () => {
+        AtualizarDadosPreçosTerrenos(20000)
+    }
     const PagarDespesas = () => {
         if (dadosDespesasPagas == true) {
             return alert("despesas desse mês já forma pagas")
@@ -174,51 +210,51 @@ function Interface() {
                         <h1 className="fonteBold text-roxo text-[20px]">{dadosDia}</h1>
                     </div>
                     <div className=" flex flex-col">
-            
-                            <h1>Preço terrenos:{dadosPreçosTerrenos}</h1>
-                        
-            
-                            <h1>Preço construção LojaP:{dadosPreçosConstruçãoLojaP}</h1>
-                        
-            
-                            <h1>Preço construção LojaM:{dadosPreçosConstruçãoLojaM}</h1>
-                        
-            
-                            <h1>Preço construção LojaG:{dadosPreçosConstruçãoLojaG}</h1>
-                        
-            
-                            <h1>Terrenos:{dadosTerrenos}</h1>
-                        
-            
-                            <h1>lojas P:{dadosLojasP}</h1>
-                        
-            
-                            <h1>lojas M:{dadosLojasM}</h1>
-                        
-            
-                            <h1>lojas G:{dadosLojasG}</h1>
-                        
-            
-                            <h1>custoFuncionário:{dadosCustoFuncionário}</h1>
-                        
-            
-                            <h1>faturamentoUnitárioLojasP:{dadosFaturamentoUnitárioLojasP}</h1>
-                        
-            
-                            <h1>faturamentoTotalLojasP:{dadosFaturamentoTotalLojasP}</h1>
-                        
-            
-                            <h1>faturamentoUnitárioLojasM:{dadosFaturamentoUnitárioLojasM}</h1>
-                        
-            
-                            <h1>faturamentoTotalLojasM:{dadosFaturamentoTotalLojasM}</h1>
-                        
-            
-                            <h1>faturamentoUnitárioLojasG:{dadosFaturamentoUnitárioLojasG}</h1>
-                        
-            
-                            <h1>faturamentoTotalLojasG:{dadosFaturamentoTotalLojasG}</h1>
-                        
+
+                        <h1>Preço terrenos:{dadosPreçosTerrenos}</h1>
+
+
+                        <h1>Preço construção LojaP:{dadosPreçosConstruçãoLojaP}</h1>
+
+
+                        <h1>Preço construção LojaM:{dadosPreçosConstruçãoLojaM}</h1>
+
+
+                        <h1>Preço construção LojaG:{dadosPreçosConstruçãoLojaG}</h1>
+
+
+                        <h1>Terrenos:{dadosTerrenos}</h1>
+
+
+                        <h1>lojas P:{dadosLojasP}</h1>
+
+
+                        <h1>lojas M:{dadosLojasM}</h1>
+
+
+                        <h1>lojas G:{dadosLojasG}</h1>
+
+
+                        <h1>custoFuncionário:{dadosCustoFuncionário}</h1>
+
+
+                        <h1>faturamentoUnitárioLojasP:{dadosFaturamentoUnitárioLojasP}</h1>
+
+
+                        <h1>faturamentoTotalLojasP:{dadosFaturamentoTotalLojasP}</h1>
+
+
+                        <h1>faturamentoUnitárioLojasM:{dadosFaturamentoUnitárioLojasM}</h1>
+
+
+                        <h1>faturamentoTotalLojasM:{dadosFaturamentoTotalLojasM}</h1>
+
+
+                        <h1>faturamentoUnitárioLojasG:{dadosFaturamentoUnitárioLojasG}</h1>
+
+
+                        <h1>faturamentoTotalLojasG:{dadosFaturamentoTotalLojasG}</h1>
+
                     </div>
                 </div>
             </div>
