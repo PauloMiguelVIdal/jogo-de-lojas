@@ -31,6 +31,10 @@ function Interface() {
         dadosFaturamentoMínimoLojasG, AtualizarDadosFaturamentoMínimoLojasG,
         dadosFaturamentoMáximoLojasG, AtualizarDadosFaturamentoMáximoLojasG,
         dadosFaturamentoLojasG, AtualizarDadosFaturamentoLojasG,
+        dadosFaturamentoUnitárioLojasM,AtualizarDadosFaturamentoUnitárioLojasM,
+        dadosFaturamentoTotalLojasM,AtualizarDadosFaturamentoTotalLojasM,
+        dadosFaturamentoUnitárioLojasG,AtualizarDadosFaturamentoUnitárioLojasG,
+        dadosFaturamentoTotalLojasG,AtualizarDadosFaturamentoTotalLojasG,
 
     } = useContext(CentraldeDadosContext)
 
@@ -40,13 +44,24 @@ function Interface() {
         AtualizarDadosCustoFuncionário(novoCustoFuncionário)
     }
     
-    let novoFaturamentoUnitárioLojaP
+    let novoFatuUnitárioLojaP
     const gerarFaturamentoLojasP = () => {
-        novoFaturamentoUnitárioLojaP = Math.floor(Math.random() * (dadosFaturamentoMáximoLojasP - dadosFaturamentoMínimoLojasP + 1)) + dadosFaturamentoMínimoLojasP
-        // AtualizarDadosFaturamentoUnitárioLojasP(novoFaturamentoUnitárioLojaP)
-        alert("está sendo chamado")
-        alert(dadosFaturamentoUnitárioLojasP)
-        alert(novoFaturamentoUnitárioLojaP)
+        novoFatuUnitárioLojaP = Math.floor(Math.random() * (dadosFaturamentoMáximoLojasP - dadosFaturamentoMínimoLojasP + 1)) + dadosFaturamentoMínimoLojasP
+        AtualizarDadosFaturamentoUnitárioLojasP(novoFatuUnitárioLojaP)
+        // alert(`novo faturamento unitário: ${dadosFaturamentoUnitárioLojasP}`)
+
+    }
+    let novoFatuUnitárioLojaM
+    const gerarFaturamentoLojasM = () => {
+        novoFatuUnitárioLojaM = Math.floor(Math.random() * (dadosFaturamentoMáximoLojasM - dadosFaturamentoMínimoLojasM + 1)) + dadosFaturamentoMínimoLojasM
+        AtualizarDadosFaturamentoUnitárioLojasM(novoFatuUnitárioLojaM)
+        // alert(`novo faturamento unitário: ${dadosFaturamentoUnitárioLojasM}`)
+    }
+    let novoFatuUnitárioLojaG
+    const gerarFaturamentoLojasG = () => {
+        novoFatuUnitárioLojaG = Math.floor(Math.random() * (dadosFaturamentoMáximoLojasG - dadosFaturamentoMínimoLojasG + 1)) + dadosFaturamentoMínimoLojasG
+        AtualizarDadosFaturamentoUnitárioLojasG(novoFatuUnitárioLojaG)
+        // alert(`novo faturamento unitário: ${dadosFaturamentoUnitárioLojasG}`)
     }
 
     const ProximoDia = () => {
@@ -62,16 +77,18 @@ function Interface() {
 
         AtualizarDadosDia(dadosDia + 1)
         gerarFaturamentoLojasP()
-        AtualizarDadosFaturamentoUnitárioLojasP(novoFaturamentoUnitárioLojaP)
-        alert(`dados fauramento${dadosFaturamentoUnitárioLojasP}`)
-        AtualizarDadosFaturamentoTotalLojasP(dadosLojasP * dadosFaturamentoUnitárioLojasP)
-        alert(dadosFaturamentoTotalLojasP)
+        gerarFaturamentoLojasM()
+        gerarFaturamentoLojasG()
+        // AtualizarDadosFaturamentoUnitárioLojasP(novoFatuUnitárioLojaP)
+        AtualizarDadosFaturamentoTotalLojasP(dadosLojasP * dadosFaturamentoUnitárioLojasP)        
+        // AtualizarDadosFaturamentoUnitárioLojasM(novoFatuUnitárioLojaM)
+        AtualizarDadosFaturamentoTotalLojasM(dadosLojasM * dadosFaturamentoUnitárioLojasM)        
+        // AtualizarDadosFaturamentoUnitárioLojasG(novoFatuUnitárioLojaG)
+        AtualizarDadosFaturamentoTotalLojasG(dadosLojasG * dadosFaturamentoUnitárioLojasG)        
         AtualizarDadosDespesasLojasP(dadosLojasP * 250)
         AtualizarDadosDespesasLojasM(dadosLojasM * 400)
         AtualizarDadosDespesasLojasG(dadosLojasG * 750)
-        AtualizarDadosFaturamentoLojasM(dadosLojasM * 3000)
-        AtualizarDadosFaturamentoLojasG(dadosLojasG * 7000)
-        AtualizarDadosSaldo(dadosSaldo + dadosFaturamentoTotalLojasP + dadosFaturamentoLojasM + dadosFaturamentoLojasG)
+        AtualizarDadosSaldo(dadosSaldo + dadosFaturamentoTotalLojasP + dadosFaturamentoTotalLojasM + dadosFaturamentoTotalLojasG)
     }
 
     const mudançasDePreços = () => {
@@ -156,40 +173,52 @@ function Interface() {
                         <h1 className="fonteLight text-roxo text-[20px]">Dia:</h1>
                         <h1 className="fonteBold text-roxo text-[20px]">{dadosDia}</h1>
                     </div>
-                    <div className=" flex justify-evenly">
-                        <div className="flex items-center justify-center">
+                    <div className=" flex flex-col">
+            
                             <h1>Preço terrenos:{dadosPreçosTerrenos}</h1>
-                        </div>
-                        <div className="flex items-center justify-center">
+                        
+            
                             <h1>Preço construção LojaP:{dadosPreçosConstruçãoLojaP}</h1>
-                        </div>
-                        <div className="flex items-center justify-center">
+                        
+            
                             <h1>Preço construção LojaM:{dadosPreçosConstruçãoLojaM}</h1>
-                        </div>
-                        <div className="flex items-center justify-center">
+                        
+            
                             <h1>Preço construção LojaG:{dadosPreçosConstruçãoLojaG}</h1>
-                        </div>
-                        <div className="flex items-center justify-center">
+                        
+            
                             <h1>Terrenos:{dadosTerrenos}</h1>
-                        </div>
-                        <div className="flex items-center justify-center">
+                        
+            
                             <h1>lojas P:{dadosLojasP}</h1>
-                        </div>
-                        <div className="flex items-center justify-center">
+                        
+            
                             <h1>lojas M:{dadosLojasM}</h1>
-                        </div>
-                        <div className="flex items-center justify-center">
+                        
+            
                             <h1>lojas G:{dadosLojasG}</h1>
-                        </div>
-                        <div className="flex items-center justify-center">
+                        
+            
                             <h1>custoFuncionário:{dadosCustoFuncionário}</h1>
-                        </div>
-                        <div className="flex items-center justify-center">
+                        
+            
                             <h1>faturamentoUnitárioLojasP:{dadosFaturamentoUnitárioLojasP}</h1>
-                        </div>
-                        <div className="flex items-center justify-center">
+                        
+            
                             <h1>faturamentoTotalLojasP:{dadosFaturamentoTotalLojasP}</h1>
-                        </div>
+                        
+            
+                            <h1>faturamentoUnitárioLojasM:{dadosFaturamentoUnitárioLojasM}</h1>
+                        
+            
+                            <h1>faturamentoTotalLojasM:{dadosFaturamentoTotalLojasM}</h1>
+                        
+            
+                            <h1>faturamentoUnitárioLojasG:{dadosFaturamentoUnitárioLojasG}</h1>
+                        
+            
+                            <h1>faturamentoTotalLojasG:{dadosFaturamentoTotalLojasG}</h1>
+                        
                     </div>
                 </div>
             </div>
@@ -200,18 +229,18 @@ function Interface() {
                 </div>
                 <div className="flex justify-evenly items-center w-[250px] h-[30px] rounded-[20px] bg-white box2">
                     <h1 className="fonteLight text-roxo text-[20px]">faturamento Atual diário:</h1>
-                    <h1 className="fonteBold text-roxo text-[20px]">{dadosFaturamentoLojasP + dadosFaturamentoLojasM + dadosFaturamentoLojasG}</h1>
+                    <h1 className="fonteBold text-roxo text-[20px]">{dadosFaturamentoTotalLojasP + dadosFaturamentoTotalLojasM + dadosFaturamentoTotalLojasG}</h1>
                 </div>
-                <div className="flex justify-evenly items-center w-[250px] h-[30px] rounded-[20px] bg-white box2">
+                {/* <div className="flex justify-evenly items-center w-[250px] h-[30px] rounded-[20px] bg-white box2">
                     <h1 className="fonteLight text-roxo text-[20px]">Despesas do mês Atual:</h1>
                     <h1 className="fonteBold text-roxo text-[20px]">{dadosFaturamentoLojasP + dadosFaturamentoLojasM + dadosFaturamentoLojasG}</h1>
-                </div>
+                </div> */}
 
             </div>
 
 
             <div className="grid col-start-1 col-end-3 row-2">
-                <div className="flex justify-around">
+                <div className="flex justify-center">
 
                     <button onClick={ProximoDia}>
                         proximo dia</button>

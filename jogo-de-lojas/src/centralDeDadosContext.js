@@ -3,9 +3,9 @@ import React, { useState, createContext} from 'react';
 const CentraldeDadosContext = createContext();
 
 const CentraldeDadosProvider = ({ children }) => {
-  const [dadosSaldo, setDadosSaldo] = useState(120000);
+  const [dadosSaldo, setDadosSaldo] = useState(500000);
   const [dadosDia, setDadosDia] = useState(1);
-  const [dadosTerrenos, setDadosTerrenos] = useState(0);
+  const [dadosTerrenos, setDadosTerrenos] = useState(20);
   const [dadosPreçosTerrenos, setDadosPreçoTerrenos] = useState(70000);
   const [dadosPreçosConstruçãoLojaP, setDadosPreçoConstruçãoLojasP] = useState(50000);
   const [dadosPreçosConstruçãoLojaM, setDadosPreçoConstruçãoLojasM] = useState(100000);
@@ -13,13 +13,18 @@ const CentraldeDadosProvider = ({ children }) => {
   const [dadosLojasP, setDadosLojasP] = useState(0);
   const [dadosLojasM, setDadosLojasM] = useState(0);
   const [dadosLojasG, setDadosLojasG] = useState(0);
-  const [dadosFaturamentoLojasP, setDadosFaturamentoLojasP] = useState(0);
+  const [dadosFaturamentoUnitárioLojasP, setDadosFaturamentoUnitárioLojasP] = useState(0);
+  const [dadosFaturamentoTotalLojasP, setDadosFaturamentoTotalLojasP] = useState(0);
+  const [dadosFaturamentoUnitárioLojasM, setDadosFaturamentoUnitárioLojasM] = useState(0);
+  const [dadosFaturamentoTotalLojasM, setDadosFaturamentoTotalLojasM] = useState(0);
+  const [dadosFaturamentoUnitárioLojasG, setDadosFaturamentoUnitárioLojasG] = useState(0);
+  const [dadosFaturamentoTotalLojasG, setDadosFaturamentoTotalLojasG] = useState(0);
   const [dadosFaturamentoMínimoLojasP, setDadosFaturamentoMínimoLojasP] = useState(800);
   const [dadosFaturamentoMáximoLojasP, setDadosFaturamentoMáximoLojasP] = useState(1400);
-  const [dadosFaturamentoLojasM, setDadosFaturamentoLojasM] = useState(0);
+
   const [dadosFaturamentoMínimoLojasM, setDadosFaturamentoMínimoLojasM] = useState(2000);
   const [dadosFaturamentoMáximoLojasM, setDadosFaturamentoMáximoLojasM] = useState(4500);
-  const [dadosFaturamentoLojasG, setDadosFaturamentoLojasG] = useState(0);
+ 
   const [dadosFaturamentoMínimoLojasG, setDadosFaturamentoMínimoLojasG] = useState(5000);
   const [dadosFaturamentoMáximoLojasG, setDadosFaturamentoMáximoLojasG] = useState(12000);
   const [dadosDespesasLojasP, setDadosDespesasLojasP] = useState(0);
@@ -76,8 +81,26 @@ const CentraldeDadosProvider = ({ children }) => {
   const AtualizarDadosDespesasLojasG = novaDespesaLojaG =>{
     setDadosDespesasLojasG(novaDespesaLojaG)
   }
-  const AtualizarDadosFaturamentoLojasP = novoFaturamentoLojaP =>{
-    setDadosFaturamentoLojasP(novoFaturamentoLojaP)
+ 
+  const AtualizarDadosFaturamentoUnitárioLojasP = novoFaturamentoUnitárioLojaP =>{
+    setDadosFaturamentoUnitárioLojasP(novoFaturamentoUnitárioLojaP)
+  }
+  const AtualizarDadosFaturamentoTotalLojasP = novoFaturamentoTotalLojaP =>{
+    setDadosFaturamentoTotalLojasP(novoFaturamentoTotalLojaP)
+  }
+
+  const AtualizarDadosFaturamentoUnitárioLojasM = novoFaturamentoUnitárioLojaM =>{
+    setDadosFaturamentoUnitárioLojasM(novoFaturamentoUnitárioLojaM)
+  }
+  const AtualizarDadosFaturamentoTotalLojasM = novoFaturamentoTotalLojaM =>{
+    setDadosFaturamentoTotalLojasM(novoFaturamentoTotalLojaM)
+  }
+
+  const AtualizarDadosFaturamentoUnitárioLojasG = novoFaturamentoUnitárioLojaG =>{
+    setDadosFaturamentoUnitárioLojasG(novoFaturamentoUnitárioLojaG)
+  }
+  const AtualizarDadosFaturamentoTotalLojasG = novoFaturamentoTotalLojaG =>{
+    setDadosFaturamentoTotalLojasG(novoFaturamentoTotalLojaG)
   }
   const AtualizarDadosFaturamentoMínimoLojasP = novoFaturamentoMínimoLojasP =>{
     setDadosFaturamentoMínimoLojasP(novoFaturamentoMínimoLojasP)
@@ -103,16 +126,11 @@ const CentraldeDadosProvider = ({ children }) => {
   const AtualizarDadosLojasM = novaLojaM =>{
     setDadosLojasM(novaLojaM)
   }
-  const AtualizarDadosFaturamentoLojasM = novoFaturamentoLojaM =>{
-    setDadosFaturamentoLojasM(novoFaturamentoLojaM)
-  }
 
   const AtualizarDadosLojasG = novaLojaG =>{
     setDadosLojasG(novaLojaG)
   }
-  const AtualizarDadosFaturamentoLojasG = novoFaturamentoLojaG =>{
-    setDadosFaturamentoLojasG(novoFaturamentoLojaG)
-  }
+
   const AtualizarDadosDiaPagarDespesas = novoDiaPagamentoDespesas =>{
     setDiaDePagarDespesas(novoDiaPagamentoDespesas)
   }
@@ -166,14 +184,17 @@ const CentraldeDadosProvider = ({ children }) => {
       dadosCustoFuncionário,AtualizarDadosCustoFuncionário,
       dadosFaturamentoMínimoLojasP,AtualizarDadosFaturamentoMínimoLojasP,
       dadosFaturamentoMáximoLojasP,AtualizarDadosFaturamentoMáximoLojasP,
-      dadosFaturamentoLojasP,AtualizarDadosFaturamentoLojasP,
+      dadosFaturamentoUnitárioLojasP,AtualizarDadosFaturamentoUnitárioLojasP,
+      dadosFaturamentoTotalLojasP,AtualizarDadosFaturamentoTotalLojasP,
+      dadosFaturamentoUnitárioLojasM,AtualizarDadosFaturamentoUnitárioLojasM,
+      dadosFaturamentoTotalLojasM,AtualizarDadosFaturamentoTotalLojasM,
+      dadosFaturamentoUnitárioLojasG,AtualizarDadosFaturamentoUnitárioLojasG,
+      dadosFaturamentoTotalLojasG,AtualizarDadosFaturamentoTotalLojasG,
       dadosFaturamentoMínimoLojasM,AtualizarDadosFaturamentoMínimoLojasM,
       dadosFaturamentoMáximoLojasM,AtualizarDadosFaturamentoMáximoLojasM,
-      dadosFaturamentoLojasM,AtualizarDadosFaturamentoLojasM,
       dadosFaturamentoMínimoLojasG,AtualizarDadosFaturamentoMínimoLojasG,
       dadosFaturamentoMáximoLojasG,AtualizarDadosFaturamentoMáximoLojasG,
-      dadosFaturamentoLojasG,AtualizarDadosFaturamentoLojasG,
-      
+
     }}>
       {children}
     </CentraldeDadosContext.Provider>
